@@ -16,7 +16,7 @@ output "iot_thing_types_name" {
 }
 output "iot_thing_types_properties" {
   description = "Map of properties values across all iot_thing_types, keyed the same as var.iot_thing_types"
-  value       = { for k, v in aws_iot_thing_type.iot_thing_types : k => v.properties if v.properties != null && length(v.properties) > 0 }
+  value       = { for k, v in aws_iot_thing_type.iot_thing_types : k => one(v.properties) if v.properties != null && length(v.properties) > 0 }
 }
 output "iot_thing_types_region" {
   description = "Map of region values across all iot_thing_types, keyed the same as var.iot_thing_types"
